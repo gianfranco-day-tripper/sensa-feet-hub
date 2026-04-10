@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub de Mentoría Meta Ads | Sensa Feet</title>
-    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
+    
+    <!-- Librerías desde CDN seguros -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configuración de colores -->
     <script>
         tailwind.config = {
             theme: {
@@ -19,6 +23,8 @@
             }
         }
     </script>
+    
+    <!-- Estilos esenciales -->
     <style>
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
@@ -45,7 +51,7 @@
         </div>
     </nav>
 
-    <!-- Encabezado Hero -->
+    <!-- Encabezado -->
     <header class="py-16 md:py-24 px-6 text-center bg-gradient-to-b from-brandLight to-gray-50">
         <div class="max-w-4xl mx-auto">
             <span class="bg-brandBlue text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 inline-block">Recursos de Mentoría</span>
@@ -85,7 +91,7 @@
         </div>
     </section>
 
-    <!-- Sección Estrategia -->
+    <!-- Estrategia -->
     <section id="estrategia" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-20">
         <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic border-l-8 border-brandBlue pl-6">Manual Estratégico</h2>
         <div class="space-y-6">
@@ -93,32 +99,56 @@
                 <h4 class="font-black text-brandBlue mb-4 uppercase text-xs tracking-widest">01. El Gancho Visual</h4>
                 <p class="text-gray-600">El éxito es el creativo. El gancho debe aparecer en los primeros 2 segundos.</p>
             </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm">
+                <h4 class="font-black text-brandBlue mb-4 uppercase text-xs tracking-widest">02. Enfoque en Conversiones</h4>
+                <p class="text-gray-600">No desperdicies presupuesto en tráfico. Ve directo por Leads o Ventas.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Sección Glosario -->
+    <!-- Glosario -->
     <section id="diccionario" class="py-20 px-6 bg-brandLight scroll-mt-20">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic border-l-8 border-brandBlue pl-6">Diccionario</h2>
-            <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all uppercase text-sm">
-                    Métricas de Atención (CTR)
-                    <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
-                </summary>
-                <div class="p-8 text-sm text-gray-600 bg-white">
-                    <p><strong>CTR (Click Through Rate):</strong> Mide qué tan atractivo es tu anuncio.</p>
-                </div>
-            </details>
+            <div class="space-y-4">
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all uppercase text-sm">
+                        Métricas de Atención (CTR)
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-8 text-sm text-gray-600 bg-white">
+                        <p><strong>CTR (Click Through Rate):</strong> Mide qué tan atractivo es tu anuncio. Lo ideal es mantenerlo sobre 1%.</p>
+                    </div>
+                </details>
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all uppercase text-sm">
+                        Métricas de Negocio (CPL / ROAS)
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-8 text-sm text-gray-600 bg-white">
+                        <p><strong>CPL (Costo por Lead):</strong> Es el costo de adquirir un cliente potencial.</p>
+                        <p class="mt-2"><strong>ROAS:</strong> Retorno de tu inversión publicitaria.</p>
+                    </div>
+                </details>
+            </div>
         </div>
     </section>
 
     <!-- Checklist -->
     <section id="ruta" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-20">
-        <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic">Checklist</h2>
+        <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic">Checklist de Lanzamiento</h2>
         <div class="grid gap-4">
             <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
                 <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
-                <span class="font-bold text-brandBlue text-sm">Pixel de Meta verificado.</span>
+                <span class="font-bold text-brandBlue text-sm">Pixel de Meta y API verificados.</span>
+            </label>
+            <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
+                <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
+                <span class="font-bold text-brandBlue text-sm">Exclusión de clientes que ya compraron activa.</span>
+            </label>
+            <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
+                <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
+                <span class="font-bold text-brandBlue text-sm">Anuncios en formato vertical (9:16) y cuadrado (1:1).</span>
             </label>
         </div>
     </section>
@@ -130,6 +160,11 @@
         </a>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <!-- Script de Inicialización -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            lucide.createIcons();
+        });
+    </script>
 </body>
 </html>
