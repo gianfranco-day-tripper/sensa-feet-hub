@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Configuración de colores -->
+    <!-- Configuración de colores de Sensa Feet -->
     <script>
         tailwind.config = {
             theme: {
@@ -26,144 +26,492 @@
     
     <!-- Estilos esenciales -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Ocultar flecha nativa del acordeón */
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
-        .checklist-item input:checked + span {
-            text-decoration: line-through;
+        
+        /* Efecto de completado en el checklist */
+        .audit-check:checked + label {
             color: #879EA5;
+            text-decoration: line-through;
             opacity: 0.7;
         }
+        
+        /* Estilos del scroll para el glosario */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F3F6F8; }
+        ::-webkit-scrollbar-thumb { background: #879EA5; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
     <!-- Navegación -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+    <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <img class="h-10 md:h-12 w-auto" src="Logo Sensa Feet_horizontal Original_Horizontal_azul copia (3).png" alt="Sensa Feet">
+                <img class="h-10 md:h-12 w-auto" src="Logo Sensa Feet_horizontal Original_Horizontal_azul copia (3).png" alt="Sensa Feet" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="hidden font-black text-brandBlue text-xl tracking-tighter uppercase">Sensa Feet</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-brandBlue font-bold text-sm uppercase tracking-wider">
-                <a href="#estrategia" class="hover:text-brandGray transition-colors">Estrategia</a>
-                <a href="#diccionario" class="hover:text-brandGray transition-colors">Glosario</a>
-                <a href="#ruta" class="hover:text-brandGray transition-colors">Checklist</a>
+            <div class="hidden md:flex space-x-6 text-brandBlue font-bold text-sm uppercase tracking-wider">
+                <a href="#auditoria" class="hover:text-brandGray transition-colors">Auditoría</a>
+                <a href="#buenas-practicas" class="hover:text-brandGray transition-colors">Buenas Prácticas</a>
+                <a href="#glosario" class="hover:text-brandGray transition-colors">Glosario</a>
             </div>
         </div>
     </nav>
 
-    <!-- Encabezado -->
+    <!-- Encabezado Hero -->
     <header class="py-16 md:py-24 px-6 text-center bg-gradient-to-b from-brandLight to-gray-50">
         <div class="max-w-4xl mx-auto">
             <span class="bg-brandBlue text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 inline-block">Recursos de Mentoría</span>
             <h1 class="text-4xl md:text-6xl font-black text-brandBlue mb-6 leading-tight uppercase italic">Hub de Resultados Sensa Feet</h1>
-            <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-10 font-medium">Domina Meta Ads con la metodología estratégica diseñada para escalar tu negocio.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#menu" class="bg-brandBlue text-white px-8 py-4 rounded-2xl font-bold hover:shadow-2xl transition-all hover:-translate-y-1">Explorar Contenidos</a>
-                <a href="#ruta" class="border-2 border-brandBlue text-brandBlue px-8 py-4 rounded-2xl font-bold hover:bg-white transition-all">Checklist de Auditoría</a>
-            </div>
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-10 font-medium">Domina Meta Ads con la metodología estratégica diseñada para escalar tu negocio de podología clínica.</p>
         </div>
     </header>
 
-    <!-- Menú -->
-    <section id="menu" class="py-16 px-6 max-w-6xl mx-auto scroll-mt-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="#estrategia" class="p-8 bg-white rounded-[2rem] shadow-sm border border-gray-100 hover:border-brandBlue transition-all group">
-                <div class="w-12 h-12 bg-brandBlue/10 text-brandBlue rounded-xl flex items-center justify-center mb-6">
-                    <i data-lucide="zap"></i>
-                </div>
-                <h3 class="text-xl font-black text-brandBlue mb-3 uppercase">Estrategia</h3>
-                <p class="text-sm text-gray-500">Metodología para crear anuncios que detienen el scroll.</p>
-            </a>
-            <a href="#diccionario" class="p-8 bg-white rounded-[2rem] shadow-sm border border-gray-100 hover:border-brandBlue transition-all group">
-                <div class="w-12 h-12 bg-brandBlue/10 text-brandBlue rounded-xl flex items-center justify-center mb-6">
-                    <i data-lucide="book-open"></i>
-                </div>
-                <h3 class="text-xl font-black text-brandBlue mb-3 uppercase">Glosario</h3>
-                <p class="text-sm text-gray-500">Métricas técnicas de Meta para tomar decisiones.</p>
-            </a>
-            <a href="#ruta" class="p-8 bg-white rounded-[2rem] shadow-sm border border-gray-100 hover:border-brandBlue transition-all group">
+    <!-- Menú Principal (Cards) -->
+    <section id="menu" class="py-10 px-6 max-w-7xl mx-auto -mt-16 relative z-10 scroll-mt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="#auditoria" class="p-8 bg-white rounded-3xl shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-brandBlue transition-all group hover:-translate-y-1">
                 <div class="w-12 h-12 bg-brandBlue/10 text-brandBlue rounded-xl flex items-center justify-center mb-6">
                     <i data-lucide="check-square"></i>
                 </div>
-                <h3 class="text-xl font-black text-brandBlue mb-3 uppercase">Checklist</h3>
-                <p class="text-sm text-gray-500">Pasos obligatorios antes de encender campañas.</p>
+                <h3 class="text-xl font-black text-brandBlue mb-3">Auditoría Campaña Meta Ads</h3>
+                <p class="text-sm text-gray-500">Checklist paso a paso y control de progreso.</p>
+            </a>
+            <a href="#buenas-practicas" class="p-8 bg-white rounded-3xl shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-brandBlue transition-all group hover:-translate-y-1">
+                <div class="w-12 h-12 bg-brandBlue/10 text-brandBlue rounded-xl flex items-center justify-center mb-6">
+                    <i data-lucide="zap"></i>
+                </div>
+                <h3 class="text-xl font-black text-brandBlue mb-3">Manual de Buenas Prácticas Meta Ads</h3>
+                <p class="text-sm text-gray-500">Reglas clave para creativos y presupuestos.</p>
+            </a>
+            <a href="#glosario" class="p-8 bg-white rounded-3xl shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-brandBlue transition-all group hover:-translate-y-1">
+                <div class="w-12 h-12 bg-brandBlue/10 text-brandBlue rounded-xl flex items-center justify-center mb-6">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <h3 class="text-xl font-black text-brandBlue mb-3">Glosario Meta Ads</h3>
+                <p class="text-sm text-gray-500">Buscador técnico de conceptos y métricas.</p>
             </a>
         </div>
     </section>
 
-    <!-- Estrategia -->
-    <section id="estrategia" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-20">
-        <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic border-l-8 border-brandBlue pl-6">Manual Estratégico</h2>
-        <div class="space-y-6">
-            <div class="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm">
-                <h4 class="font-black text-brandBlue mb-4 uppercase text-xs tracking-widest">01. El Gancho Visual</h4>
-                <p class="text-gray-600">El éxito es el creativo. El gancho debe aparecer en los primeros 2 segundos.</p>
-            </div>
-            <div class="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm">
-                <h4 class="font-black text-brandBlue mb-4 uppercase text-xs tracking-widest">02. Enfoque en Conversiones</h4>
-                <p class="text-gray-600">No desperdicies presupuesto en tráfico. Ve directo por Leads o Ventas.</p>
-            </div>
-        </div>
-    </section>
+    <div class="max-w-7xl mx-auto px-6 space-y-32 py-16">
 
-    <!-- Glosario -->
-    <section id="diccionario" class="py-20 px-6 bg-brandLight scroll-mt-20">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic border-l-8 border-brandBlue pl-6">Diccionario</h2>
-            <div class="space-y-4">
+        <!-- 1. AUDITORÍA CAMPAÑA META ADS (Dashboard Style) -->
+        <section id="auditoria" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 border-b border-gray-200 pb-6">
+                <div>
+                    <span class="text-brandGray font-black tracking-widest text-xs uppercase mb-2 block">Control Operativo</span>
+                    <h2 class="text-3xl font-black text-brandBlue uppercase">Auditoría Campaña Meta Ads</h2>
+                </div>
+                <!-- Progress Bar -->
+                <div class="mt-6 md:mt-0 bg-white p-4 rounded-2xl shadow-sm border border-gray-100 w-full md:w-64">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-gray-500 uppercase">Progreso</span>
+                        <span id="progress-text" class="text-sm font-black text-brandBlue">0%</span>
+                    </div>
+                    <div class="w-full bg-brandLight rounded-full h-2.5 overflow-hidden">
+                        <div id="progress-bar" class="bg-brandBlue h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 Columns Layout for Checklist -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Columna Izquierda -->
+                <div class="space-y-8">
+                    <!-- Sección A -->
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <h4 class="font-bold text-brandBlue mb-4 flex items-center gap-2"><i data-lucide="settings" class="w-5 h-5"></i> Configuración General</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-1" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-1" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Business Manager configurado</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-2" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-2" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Cuenta publicitaria activa y sin restricciones</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-3" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-3" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Método de pago válido</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-4" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-4" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Zona horaria y moneda correctas (CLP)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección B -->
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <h4 class="font-bold text-brandBlue mb-4 flex items-center gap-2"><i data-lucide="layers" class="w-5 h-5"></i> Estructura y Objetivos</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-5" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-5" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Campañas separadas por objetivo (Tráfico / Leads / Conversiones)</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-6" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-6" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Naming claro y estandarizado (Ej: LEADS | Remarketing | Feb)</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-7" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-7" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Uso correcto de CBO o ABO según la estrategia</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-8" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-8" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Eventos correctamente seleccionados (No usar Tráfico para Ventas)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha -->
+                <div class="space-y-8">
+                    <!-- Sección C -->
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <h4 class="font-bold text-brandBlue mb-4 flex items-center gap-2"><i data-lucide="users" class="w-5 h-5"></i> Segmentación de Audiencias</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-9" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-9" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Públicos fríos definidos (intereses / lookalikes)</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-10" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-10" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Públicos de remarketing activos</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-11" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-11" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Exclusión de audiencias (clientes actuales no ven el anuncio)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección D -->
+                    <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <h4 class="font-bold text-brandBlue mb-4 flex items-center gap-2"><i data-lucide="activity" class="w-5 h-5"></i> Tracking, Medición y KPIs</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-12" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-12" class="text-sm text-gray-700 cursor-pointer select-none font-medium">Pixel instalado y eventos configurados (Lead, ViewContent)</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-13" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-13" class="text-sm text-gray-700 cursor-pointer select-none font-medium">API de conversiones activa y dominio verificado</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-14" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-14" class="text-sm text-gray-700 cursor-pointer select-none font-medium">CPL (Costo por Lead) monitoreado y dentro del objetivo</label>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="aud-15" class="audit-check mt-1 w-5 h-5 rounded border-gray-300 text-brandBlue focus:ring-brandBlue cursor-pointer">
+                                <label for="aud-15" class="text-sm text-gray-700 cursor-pointer select-none font-medium">CTR > 1% y frecuencia controlada (<3 idealmente)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MANUAL DE BUENAS PRÁCTICAS (1 Column, Accordions) -->
+        <section id="buenas-practicas" class="scroll-mt-24">
+            <div class="mb-8 border-b border-gray-200 pb-6">
+                <span class="text-brandGray font-black tracking-widest text-xs uppercase mb-2 block">Guía Estratégica</span>
+                <h2 class="text-3xl font-black text-brandBlue uppercase">Manual de Buenas Prácticas Meta Ads</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                
                 <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all uppercase text-sm">
-                        Métricas de Atención (CTR)
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        1. Definir correctamente el objetivo de campaña
                         <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
                     </summary>
-                    <div class="p-8 text-sm text-gray-600 bg-white">
-                        <p><strong>CTR (Click Through Rate):</strong> Mide qué tan atractivo es tu anuncio. Lo ideal es mantenerlo sobre 1%.</p>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-3">
+                        <p><strong>Recomendación:</strong> Usar Leads o Conversiones si el objetivo es generar contactos. Alinear las campañas con el funnel de ventas (TOFU, MOFU, BOFU).</p>
+                        <p class="text-red-600 font-medium bg-red-50 p-3 rounded-lg text-sm border-l-4 border-red-500">Error común: Usar objetivo de "Tráfico" esperando ventas.</p>
                     </div>
                 </details>
+
                 <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all uppercase text-sm">
-                        Métricas de Negocio (CPL / ROAS)
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        2. Estructura de campañas simple y clara
                         <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
                     </summary>
-                    <div class="p-8 text-sm text-gray-600 bg-white">
-                        <p><strong>CPL (Costo por Lead):</strong> Es el costo de adquirir un cliente potencial.</p>
-                        <p class="mt-2"><strong>ROAS:</strong> Retorno de tu inversión publicitaria.</p>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-3">
+                        <p>Mantén entre 3 a 5 campañas activas relevantes para evitar fragmentación excesiva.</p>
+                        <ul class="list-disc pl-5 space-y-1 text-sm">
+                            <li>Separar por objetivo (ej: Prospecting / Remarketing)</li>
+                            <li>Usar naming claro (Ej: LEADS | Prospecting | Intereses)</li>
+                        </ul>
+                        <p class="text-red-600 font-medium bg-red-50 p-3 rounded-lg text-sm border-l-4 border-red-500">Error común: Demasiadas campañas compitiendo entre sí dividiendo el presupuesto.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        3. Segmentación estratégica (Sensa Feet)
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-3">
+                        <p>Combinar audiencias frías (intereses), Lookalikes y Remarketing. Para Sensa Feet enfócate en:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-sm">
+                            <li>Intereses en salud, diabetes, bienestar general.</li>
+                            <li>Remarketing de visitas web e interacción en IG/FB.</li>
+                        </ul>
+                        <p class="text-red-600 font-medium bg-red-50 p-3 rounded-lg text-sm border-l-4 border-red-500">Error común: Audiencias demasiado pequeñas o hiper segmentadas que no dejan trabajar a la IA de Meta.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        4. Creativos de alto impacto
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-3">
+                        <p>Captar la atención en los primeros <strong>3 segundos</strong>. Utilizar video siempre que sea posible con subtítulos.</p>
+                        <div class="bg-brandLight p-4 rounded-xl border-l-4 border-brandBlue font-bold text-sm">
+                            Fórmula ganadora: Dolor → Solución → Beneficio → CTA
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        5. Gestión del presupuesto y Fatiga Publicitaria
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-3">
+                        <p><strong>Presupuesto:</strong> Asigna más capital a lo que funciona, escala progresivamente y no dividas demasiado el presupuesto en micro-segmentos.</p>
+                        <p><strong>Fatiga:</strong> Monitorea la frecuencia. Si el CTR baja, el CPC sube y los resultados caen, es señal de alerta. Renueva creativos periódicamente.</p>
+                    </div>
+                </details>
+
+                <details class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <summary class="p-6 font-bold text-brandBlue cursor-pointer flex justify-between items-center group-open:bg-brandBlue group-open:text-white transition-all text-lg">
+                        6. Enfoque estratégico para Sensa Feet y Rutina
+                        <i data-lucide="chevron-down" class="transition-transform group-open:rotate-180"></i>
+                    </summary>
+                    <div class="p-6 bg-white text-gray-600 border-t border-gray-100 space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-bold text-brandBlue mb-2">Claves de Comunicación:</h5>
+                                <ul class="list-disc pl-5 text-sm space-y-1">
+                                    <li>Educar sin alarmar.</li>
+                                    <li>Mostrar prevención como valor.</li>
+                                    <li>Generar confianza médica (testimonios).</li>
+                                    <li>Explicar tecnología de forma simple.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-brandBlue mb-2">Rutina Recomendada:</h5>
+                                <ul class="list-disc pl-5 text-sm space-y-1">
+                                    <li><strong>Diario (10m):</strong> Gasto y anomalías.</li>
+                                    <li><strong>Semanal (1h):</strong> KPIs, ganadores/perdedores.</li>
+                                    <li><strong>Mensual:</strong> Análisis, nuevos tests y creativos.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </details>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Checklist -->
-    <section id="ruta" class="py-20 px-6 max-w-4xl mx-auto scroll-mt-20">
-        <h2 class="text-3xl font-black text-brandBlue mb-10 uppercase italic">Checklist de Lanzamiento</h2>
-        <div class="grid gap-4">
-            <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
-                <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
-                <span class="font-bold text-brandBlue text-sm">Pixel de Meta y API verificados.</span>
-            </label>
-            <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
-                <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
-                <span class="font-bold text-brandBlue text-sm">Exclusión de clientes que ya compraron activa.</span>
-            </label>
-            <label class="checklist-item flex items-center gap-5 p-6 bg-white border border-gray-200 rounded-3xl cursor-pointer">
-                <input type="checkbox" class="w-6 h-6 rounded-lg border-gray-300 text-brandBlue">
-                <span class="font-bold text-brandBlue text-sm">Anuncios en formato vertical (9:16) y cuadrado (1:1).</span>
-            </label>
-        </div>
-    </section>
+        <!-- 3. GLOSARIO META ADS (Dictionary Style + Search) -->
+        <section id="glosario" class="scroll-mt-24">
+            <div class="mb-8 border-b border-gray-200 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-brandGray font-black tracking-widest text-xs uppercase mb-2 block">Diccionario Técnico</span>
+                    <h2 class="text-3xl font-black text-brandBlue uppercase">Glosario Meta Ads</h2>
+                </div>
+                
+                <!-- Buscador en tiempo real -->
+                <div class="relative w-full md:w-96">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brandGray">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </div>
+                    <input type="text" id="buscador-glosario" placeholder="Buscar un término (Ej. CTR, Pixel, ROAS)..." 
+                           class="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-brandBlue focus:border-brandBlue outline-none transition-all font-medium placeholder-gray-400">
+                </div>
+            </div>
 
-    <!-- Footer -->
+            <div class="max-w-5xl mx-auto bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
+                <!-- Contenedor del Glosario -->
+                <div id="lista-glosario" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    
+                    <!-- Items del glosario -->
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Impresiones</h4>
+                        <p class="text-gray-600 text-sm">Cantidad de veces que un anuncio se muestra en pantalla. No significa que alguien interactuó, solo que lo vio.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Alcance (Reach)</h4>
+                        <p class="text-gray-600 text-sm">Número de personas únicas que vieron el anuncio. Diferente a impresiones (una persona puede verlo varias veces).</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Frecuencia</h4>
+                        <p class="text-gray-600 text-sm">Promedio de veces que una persona vio el anuncio (Impresiones / Alcance). Si es muy alta (>3-4), genera fatiga publicitaria.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">CTR (Click Through Rate)</h4>
+                        <p class="text-gray-600 text-sm">Porcentaje de personas que hicieron clic en el anuncio. Indica qué tan atractivo es.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">CPC & CPM</h4>
+                        <p class="text-gray-600 text-sm"><strong>CPC:</strong> Costo promedio por cada clic.<br><strong>CPM:</strong> Costo por cada 1.000 impresiones (mide el costo de visibilidad).</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Conversiones</h4>
+                        <p class="text-gray-600 text-sm">Acciones valiosas realizadas por el usuario (ej: completar formulario, agendar). El indicador más importante.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">CPL (Costo por Lead)</h4>
+                        <p class="text-gray-600 text-sm">Costo promedio por cada contacto o prospecto generado. KPI clave para Sensa Feet.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">ROAS (Return on Ad Spend)</h4>
+                        <p class="text-gray-600 text-sm">Retorno generado por cada peso invertido en publicidad.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">CBO vs ABO</h4>
+                        <p class="text-gray-600 text-sm"><strong>CBO:</strong> Meta distribuye automáticamente el presupuesto entre conjuntos.<br><strong>ABO:</strong> El presupuesto se define manualmente por conjunto.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Pixel de Meta & API</h4>
+                        <p class="text-gray-600 text-sm">Código y sistema de servidor que permiten rastrear y medir acciones (eventos) en el sitio web de forma precisa.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Test A/B</h4>
+                        <p class="text-gray-600 text-sm">Comparación entre dos versiones de un anuncio (cambiando una sola variable) para ver cuál funciona mejor.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Fatiga Publicitaria</h4>
+                        <p class="text-gray-600 text-sm">Cuando el anuncio pierde efectividad por repetición. Se detecta con CTR bajo y Frecuencia alta.</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">Funnel de Marketing</h4>
+                        <p class="text-gray-600 text-sm">Etapas del usuario: <strong>TOFU</strong> (Atracción - Frío), <strong>MOFU</strong> (Consideración), <strong>BOFU</strong> (Conversión - Caliente).</p>
+                    </div>
+
+                    <div class="glosario-item border-b border-gray-100 pb-4">
+                        <h4 class="text-lg font-black text-brandBlue mb-1">CTA (Call To Action)</h4>
+                        <p class="text-gray-600 text-sm">Llamado a la acción visible en el anuncio: "Comprar", "Agendar", "Conocer más".</p>
+                    </div>
+                    
+                    <!-- Mensaje si no hay resultados -->
+                    <div id="no-results" class="hidden col-span-1 md:col-span-2 text-center py-10 text-gray-500 font-medium">
+                        No se encontraron términos que coincidan con tu búsqueda.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer intacto -->
     <footer class="bg-brandBlue text-white py-20 px-6 text-center">
-        <a href="#" class="bg-white text-brandBlue px-10 py-5 rounded-2xl font-black text-sm uppercase inline-flex items-center gap-3">
-            <i data-lucide="message-circle" class="w-6 h-6 text-green-500"></i> WhatsApp de Soporte
-        </a>
+        <div class="max-w-2xl mx-auto">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] mb-6 opacity-50">Soporte Estratégico Sensa Feet</p>
+            <h3 class="text-2xl font-black mb-10 uppercase italic">¿Dudas con la implementación?</h3>
+            <a href="#" class="bg-white text-brandBlue px-10 py-5 rounded-2xl font-black text-sm uppercase inline-flex items-center gap-3 hover:scale-105 transition-transform shadow-xl">
+                <i data-lucide="message-circle" class="w-6 h-6 text-green-500"></i> Consultar vía WhatsApp
+            </a>
+            <p class="mt-16 text-[10px] opacity-30 uppercase tracking-widest">&copy; 2026 Sensa Feet Hub • Todos los derechos reservados</p>
+        </div>
     </footer>
 
-    <!-- Script de Inicialización -->
+    <!-- Scripts de Interactividad (Vanilla JS) -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar Iconos Lucide
             lucide.createIcons();
+
+            /* =========================================
+               Lógica: Progreso del Checklist
+               ========================================= */
+            const checkboxes = document.querySelectorAll('.audit-check');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+
+            const updateProgress = () => {
+                const total = checkboxes.length;
+                const checked = document.querySelectorAll('.audit-check:checked').length;
+                const percentage = Math.round((checked / total) * 100);
+                
+                progressBar.style.width = `${percentage}%`;
+                progressText.innerText = `${percentage}%`;
+                
+                // Cambiar color si llega a 100%
+                if(percentage === 100) {
+                    progressBar.classList.remove('bg-brandBlue');
+                    progressBar.classList.add('bg-green-500');
+                    progressText.classList.add('text-green-500');
+                } else {
+                    progressBar.classList.add('bg-brandBlue');
+                    progressBar.classList.remove('bg-green-500');
+                    progressText.classList.remove('text-green-500');
+                }
+            };
+
+            // Cargar estado guardado y escuchar cambios
+            checkboxes.forEach(check => {
+                const storageKey = 'sf_audit_' + check.id;
+                if (localStorage.getItem(storageKey) === 'true') {
+                    check.checked = true;
+                }
+                check.addEventListener('change', () => {
+                    localStorage.setItem(storageKey, check.checked);
+                    updateProgress();
+                });
+            });
+
+            // Actualización inicial
+            updateProgress();
+
+            /* =========================================
+               Lógica: Buscador del Glosario en tiempo real
+               ========================================= */
+            const searchInput = document.getElementById('buscador-glosario');
+            const glosarioItems = document.querySelectorAll('.glosario-item');
+            const noResultsMsg = document.getElementById('no-results');
+
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase().trim();
+                let hasResults = false;
+
+                glosarioItems.forEach(item => {
+                    const textContent = item.innerText.toLowerCase();
+                    if (textContent.includes(term)) {
+                        item.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (hasResults) {
+                    noResultsMsg.classList.add('hidden');
+                } else {
+                    noResultsMsg.classList.remove('hidden');
+                }
+            });
         });
     </script>
 </body>
